@@ -38,7 +38,7 @@ class PhysicsEntity:
         if frame_movement[1] > 0:
           entity_rect.bottom = rect.top
           self.collisions['bottom'] = True
-          print("aqui")
+          print("bottom collision")
         if frame_movement[1] < 0:
           entity_rect.top = rect.bottom
           self.collisions['top'] = True

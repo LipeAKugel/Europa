@@ -17,10 +17,11 @@ class Game:
     
     self.assets = {
       'grass': load_dir_images('tilesets/grass'),
+      'bricks': load_dir_images('tilesets/bricks'),
       'player': load_image('astronaut/idle/0.png')
     }
     
-    self.player = PhysicsEntity(self, 'player', (50, 50), (16, 16))
+    self.player = PhysicsEntity(self, 'player', (50, 50), (9, 10))
     self.movement = [False, False]
     self.tilemap = Tilemap(self)
  
@@ -50,8 +51,6 @@ class Game:
             self.movement[0] = False
           if event.key == pygame.K_RIGHT:
             self.movement[1] = False
-
-      print(self.player.pos[1])
 
       self.screen.blit(pygame.transform.scale(self.display, self.screen.get_size()), (0, 0))
       pygame.display.update()

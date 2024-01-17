@@ -1,7 +1,11 @@
 import pygame
 
-NEIGHBOR_OFFSETS = [(-1, -1), (0, -1), (1, -1), (-1, 0), (0, 0), (1, 0), (-1, 1), (0, 1), (1, 1)]
-PHYSICS_TILES = {'grass'}
+NEIGHBOR_OFFSETS = [(-1, -1), (0, -1), (1, -1), (2, -1),
+                    (-1, 0), (0, 0), (1, 0), (2, 0),
+                    (-1, 1), (0, 1), (1, 1), (2, 1),
+                    (-1, 2), (0, 2), (1, 2), (2, 2),]
+
+PHYSICS_TILES = {'grass', 'bricks'}
 
 class Tilemap:
   def __init__(self, game, tile_size=8):
@@ -12,6 +16,9 @@ class Tilemap:
     
     for i in range(25):
       self.tilemap[f'{i};10'] = {'type':'grass', 'variant': 7, 'pos': (i, 10)}
+      
+    for i in range(25):
+      self.tilemap[f'25;{i}'] = {'type':'bricks', 'variant': 8, 'pos': (25, i)}
 
   def tiles_around(self, pos):
     tiles = []
