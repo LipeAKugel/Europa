@@ -38,17 +38,18 @@ class PhysicsEntity:
         if frame_movement[1] > 0:
           entity_rect.bottom = rect.top
           self.collisions['bottom'] = True
-          print("bottom collision")
         if frame_movement[1] < 0:
           entity_rect.top = rect.bottom
           self.collisions['top'] = True
       self.pos[1] = entity_rect.y    
     
+    # gravity.
     self.velocity[1] = min(5, self.velocity[1] + 0.1);
     
     if self.collisions['bottom'] or self.collisions['top']:
       self.velocity[1] = 0
     
-  def render(self, surf):
-    surf.blit(self.game.assets['player'], self.pos)
+  def render(self, surf, offset=(0, 0)):
+    surf.blit(self.game.assets['player'], 
+              tuple(map(lambda axis, offset: axis - offset, self.pos, offset)))
     

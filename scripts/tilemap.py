@@ -37,11 +37,13 @@ class Tilemap:
                                  self.tile_size, self.tile_size))
     return rects
   
-  def render(self, surf):
+  def render(self, surf, offset=(0, 0)):
     for tile in self.offgrid_tiles:
-      surf.blit(self.game.assets[tile['type']][tile['variant']], (tile['pos'][0], tile['pos'][1]))
+      surf.blit(self.game.assets[tile['type']][tile['variant']], 
+                tuple(map(lambda axis, offset: axis - offset, tile['pos'], offset)))
     
     for loc in self.tilemap:
       tile = self.tilemap[loc]
-      surf.blit(self.game.assets[tile['type']][tile['variant']], (tile['pos'][0] * self.tile_size, tile['pos'][1] * self.tile_size))
+      surf.blit(self.game.assets[tile['type']][tile['variant']], 
+                tuple(map(lambda axis, offset: self.tile_size * axis - offset, tile['pos'], offset)))
       
